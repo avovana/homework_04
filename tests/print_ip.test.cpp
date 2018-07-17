@@ -27,7 +27,7 @@ BOOST_AUTO_TEST_CASE(PrintIntegrals) {
 	BOOST_CHECK(result.str() == outputData);
 }
 
-// Функция должна распознавать нужные типы фундаментальных данных
+// Функция должна распознавать контейнеры
 BOOST_AUTO_TEST_CASE(PrintContainers) {
 
 	std::stringstream result;
@@ -41,6 +41,16 @@ BOOST_AUTO_TEST_CASE(PrintContainers) {
 
 	print_ip(std::vector<int>{255, 255, 0, 0}, result);
 	BOOST_CHECK(result2.str() == outputData2);
+}
+
+// Функция должна работать с пустыми контейнерами
+BOOST_AUTO_TEST_CASE(PrintEmptyContainers) {
+
+	std::stringstream result;
+	std::string outputData = "";
+
+	print_ip(std::list<int>{}, result);
+	BOOST_CHECK(result.str() == outputData);
 }
 
 // Функция должна распознавать нужные тип строки
