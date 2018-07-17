@@ -7,14 +7,13 @@
 
 #include "is_container.h"
 
-using byte = std::uint8_t;
-
 template <class T>
-std::enable_if_t<std::is_integral<T>::value, void> print_ip(const T &number_, std::ostream& os = std::cout)
+std::enable_if_t<std::is_integral<T>::value, void>
+print_ip(const T &number_, std::ostream& os = std::cout)
 {
 	T number = number_;
 
-	byte array[sizeof(T)];
+	std::uint8_t array[sizeof(T)];
 
 	for (unsigned int i = 0; i < sizeof(T); ++i)
 	{
@@ -24,7 +23,7 @@ std::enable_if_t<std::is_integral<T>::value, void> print_ip(const T &number_, st
 
 	for (unsigned int i = sizeof(T) - 1; i >= 0; --i)
 	{
-		os << (int)array[i];
+		os << static_cast<int>(array[i]);
 
 		if (i == 0)
 			break;
@@ -34,13 +33,14 @@ std::enable_if_t<std::is_integral<T>::value, void> print_ip(const T &number_, st
 }
 
 template <class T>
-std::enable_if_t<is_stl_container<T>::value && std::is_integral<typename T::value_type>::value, void> print_ip(const T &container, std::ostream& os = std::cout)
+std::enable_if_t<is_stl_container<T>::value && std::is_integral<typename T::value_type>::value, void>
+print_ip(const T &container, std::ostream& os = std::cout)
 {
 	for (auto it = std::begin(container); it != std::end(container); ++it)
 	{
 		os << *it;
 
-		if (std::next(it, 1) != std::end(container))
+		if (std::next(it) != std::end(container))
 			os << ".";
 	}
 }
