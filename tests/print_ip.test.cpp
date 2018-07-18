@@ -24,7 +24,7 @@ BOOST_AUTO_TEST_CASE(PrintIntegrals) {
 		"127.0.0.1"
 		"123.45.67.89.101.112.131.41";
 
-	BOOST_CHECK(result.str() == outputData);
+	BOOST_CHECK_EQUAL(result.str(), outputData);
 }
 
 // Функция должна распознавать контейнеры
@@ -34,13 +34,13 @@ BOOST_AUTO_TEST_CASE(PrintContainers) {
 	std::string outputData = "10.0.254.2";
 
 	print_ip(std::list<int>{10, 0, 254, 2}, result);
-	BOOST_CHECK(result.str() == outputData);
+	BOOST_CHECK_EQUAL(result.str(), outputData);
 
 	std::stringstream result2;
 	std::string outputData2 = "255.255.0.0";
 
 	print_ip(std::vector<int>{255, 255, 0, 0}, result);
-	BOOST_CHECK(result2.str() == outputData2);
+	BOOST_CHECK_EQUAL(result2.str(), outputData2);
 }
 
 // Функция должна работать с пустыми контейнерами
@@ -50,7 +50,7 @@ BOOST_AUTO_TEST_CASE(PrintEmptyContainers) {
 	std::string outputData = "";
 
 	print_ip(std::list<int>{}, result);
-	BOOST_CHECK(result.str() == outputData);
+	BOOST_CHECK_EQUAL(result.str(), outputData);
 }
 
 // Функция должна распознавать нужные тип строки
@@ -60,5 +60,5 @@ BOOST_AUTO_TEST_CASE(PrintString) {
 	std::string outputData = "192.168.0.1";
 
 	print_ip("192.168.0.1", result);
-	BOOST_CHECK(result.str() == outputData);
+	BOOST_CHECK_EQUAL(result.str(), outputData);
 }
