@@ -39,7 +39,7 @@ BOOST_AUTO_TEST_CASE(PrintContainers) {
 	std::stringstream result2;
 	std::string outputData2 = "255.255.0.0";
 
-	print_ip(std::vector<int>{255, 255, 0, 0}, result);
+	print_ip(std::vector<int>{255, 255, 0, 0}, result2);
 	BOOST_CHECK_EQUAL(result2.str(), outputData2);
 }
 
